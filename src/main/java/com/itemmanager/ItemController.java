@@ -1,5 +1,6 @@
 package com.itemmanager;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -12,13 +13,13 @@ import java.util.Map;
 @RestController
 @RequestMapping("item")
 public class ItemController {
+    @Autowired
+    ItemService itemService;
+
     @RequestMapping(method = RequestMethod.GET)
     public Map getItem() {
-        List<Item> items = new ArrayList<>();
-        Item item = new Item();
-        item.setId(1);
-        item.setName("Backpack");
-        items.add(item);
+
+        List<Item> items = itemService.readAll();
 
         Map<String, Object> res = new HashMap<>();
         res.put("response", items);
