@@ -1,9 +1,7 @@
 package com.itemmanager;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -17,12 +15,31 @@ public class ItemController {
     ItemService itemService;
 
     @RequestMapping(method = RequestMethod.GET)
-    public Map getItem() {
+    public Map readItems() {
 
-        List<Item> items = itemService.readAll();
+        List<Item> items = itemService.readItems();
 
         Map<String, Object> res = new HashMap<>();
-        res.put("response", items);
+        res.put("data", items);
+        return res;
+    }
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    public Map readItemName(@PathVariable("id") int id) {
+
+        String name = itemService.readItemName(id);
+
+        Map<String, Object> res = new HashMap<>();
+        res.put("data", name);
+        return res;
+    }
+
+    @RequestMapping(value = "/{name}", method = RequestMethod.POST)
+    public Map createItem(@PathVariable("name") String name) {
+        int number = itemService.createItem(name);
+
+        Map<String, Object> res = new HashMap<>();
+        res.put("data", number);
         return res;
     }
 }
