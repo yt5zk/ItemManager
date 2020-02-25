@@ -1,5 +1,6 @@
 DROP TABLE IF EXISTS time_event;
 CREATE TABLE item (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    name VARCHAR(256)
+    id INT PRIMARY KEY AUTO_INCREMENT
+    , name VARCHAR(256)
+    , price INT
 );

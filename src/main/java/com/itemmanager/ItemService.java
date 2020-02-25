@@ -10,16 +10,12 @@ public class ItemService {
     @Autowired
     ItemMapper itemMapper;
 
-    public List<Item> readItems() {
-        return itemMapper.readItems();
+    public Item read(int id) {
+        return itemMapper.read(id);
     }
 
-    public String readItemName(int id) {
-        return itemMapper.readItemName(id);
-    }
-
-    public int createItem(String name) {
-        return itemMapper.createItem(name);
+    public int create(Item item) {
+        return itemMapper.create(item);
     }
 
 }

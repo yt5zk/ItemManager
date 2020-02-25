@@ -3,17 +3,19 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.itemmanager.ItemMapper">
-    <select id="readItems" resultType="com.itemmanager.Item">
-        SELECT id, name
-        FROM item
-    </select>
-    <select id="readItemName" resultType="String">
+    <insert id="create">
+        INSERT INTO item
+        VALUES (NULL, #{item.name}, ${item.name});
+    </insert>
+    <update id="update">
+
+    </update>
+    <select id="read" resultType="Item">
         SELECT name
         FROM item
-        WHERE id = #{id}
+        WHERE id = ${id}
     </select>
-    <insert id="createItem">
-        INSERT INTO item
-        VALUES (NULL, #{name});
-    </insert>
+    <delete id="delete">
+
+    </delete>
 </mapper>

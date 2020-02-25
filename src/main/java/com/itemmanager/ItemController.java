@@ -14,29 +14,19 @@ public class ItemController {
     @Autowired
     ItemService itemService;
 
-    @RequestMapping(method = RequestMethod.GET)
-    public Map readItems() {
-
-        List<Item> items = itemService.readItems();
-
-        Map<String, Object> res = new HashMap<>();
-        res.put("data", items);
-        return res;
-    }
-
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public Map readItemName(@PathVariable("id") int id) {
+    public Map read(@PathVariable("id") int id) {
 
-        String name = itemService.readItemName(id);
+        Item item = itemService.read(id);
 
         Map<String, Object> res = new HashMap<>();
-        res.put("data", name);
+        res.put("data", item);
         return res;
     }
 
-    @RequestMapping(value = "/{name}", method = RequestMethod.POST)
-    public Map createItem(@PathVariable("name") String name) {
-        int number = itemService.createItem(name);
+    @RequestMapping(value = "/", method = RequestMethod.POST)
+    public Map createItem(@RequestBody Item item) {
+        int number = itemService.create(item);
 
         Map<String, Object> res = new HashMap<>();
         res.put("data", number);

@@ -2,16 +2,15 @@ package com.itemmanager;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
-
-import java.util.List;
 
 @Mapper
 public interface ItemMapper {
 
-    List<Item> readItems();
+    int create(@Param("item") Item item);
 
-    String readItemName(@Param("id") int id);
+//    int update(@Param("item") Item item);
 
-    int createItem(@Param("name") String name);
+    Item read(@Param("id") int id);
+
+//    int delete(@Param("id") int id);
 }
