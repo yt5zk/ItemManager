@@ -4,18 +4,27 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.itemmanager.ItemMapper">
     <insert id="create">
-        INSERT INTO item
-        VALUES (NULL, #{item.name}, ${item.name});
+        INSERT
+        INTO    item
+        VALUES( NULL
+              , #{item.name}
+              , ${item.price}
+        )
     </insert>
     <update id="update">
-
+        UPDATE item
+        SET    name = #{item.name}
+             , price = ${item.price}
+        WHERE  id = ${item.id}
     </update>
-    <select id="read" resultType="Item">
-        SELECT name
-        FROM item
-        WHERE id = ${id}
+    <select id="read" resultType="com.itemmanager.Item">
+        SELECT id, name, price
+        FROM   item
+        WHERE  id = ${id}
     </select>
     <delete id="delete">
-
+        DELETE
+        FROM   item
+        WHERE  id = ${id}
     </delete>
 </mapper>

@@ -14,7 +14,26 @@ public class ItemController {
     @Autowired
     ItemService itemService;
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    // Create
+    @PostMapping("")
+    public Map create(@RequestBody Item item) {
+        int number = itemService.create(item);
+
+        Map<String, Object> res = new HashMap<>();
+        res.put("data", number);
+        return res;
+    }
+    // Update
+    @PutMapping("")
+    public Map update(@RequestBody Item item) {
+        int number = itemService.update(item);
+
+        Map<String, Object> res = new HashMap<>();
+        res.put("data", number);
+        return res;
+    }
+    // Read
+    @GetMapping("/{id}")
     public Map read(@PathVariable("id") int id) {
 
         Item item = itemService.read(id);
@@ -23,13 +42,14 @@ public class ItemController {
         res.put("data", item);
         return res;
     }
-
-    @RequestMapping(value = "/", method = RequestMethod.POST)
-    public Map createItem(@RequestBody Item item) {
-        int number = itemService.create(item);
+    // Delete
+    @DeleteMapping("/{id}")
+    public Map delete(@PathVariable("id") int id) {
+        int number = itemService.delete(id);
 
         Map<String, Object> res = new HashMap<>();
         res.put("data", number);
         return res;
     }
+
 }
